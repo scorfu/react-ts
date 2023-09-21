@@ -10,13 +10,20 @@ function App() {
     const newTodo = new Todo(todoText); //define the newTodo variable by instancing a new object from class Todo using the text receveing as a argument
 
     setTodos((prevTodos) => {
+
       return prevTodos.concat(newTodo) //update the state by concan
     });
   };
+
+    const removeTodoHandler = (todoId: string) => {
+      setTodos((prevTodos) => {
+        return prevTodos.filter(todo => todo.id !== todoId)
+      })
+    }
   return (
     <div>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onRemoveTodo={removeTodoHandler}/>
     </div>
   );
 }
